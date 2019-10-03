@@ -6,6 +6,8 @@ import axios from 'axios';
 import fs from 'fs';
 import fse from 'fs-extra';
 import path from 'path';
+import move from 'glob-move';
+import rimraf from 'rimraf';
 
 import { SOURCE_BASE_URL, SOURCE_BASE_FOLDER } from './constants';
 
