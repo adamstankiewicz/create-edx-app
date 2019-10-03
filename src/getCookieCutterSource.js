@@ -5,6 +5,8 @@ import chalk from 'chalk';
 import axios from 'axios';
 import fse from 'fs-extra';
 import path from 'path';
+import move from 'glob-move';
+import rimraf from 'rimraf';
 
 import { SOURCE_BASE_URL, SOURCE_BASE_FOLDER } from './constants';
 
@@ -49,6 +51,20 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
     source: destinationSourceFilename,
     destination,
   });
+
+  /*
+    Code is cloned inside "frontend-cookiecutter-application-master".
+    This extracts the content files to an upper level so the code
+    will be created in the folder you indicated
+  */
+  await move(`${destination}/frontend-cookiecutter-application-master/*`, destination, { dot: true })
+    .then(() => 'Content of node_modules moved successfully!')
+    .catch((error) => {
+      console.error(error);
+    });
+
+  // Removes the temporary folder
+  rimraf.sync(`${destination}/frontend-cookiecutter-application-master`);
 };
 
 export {
