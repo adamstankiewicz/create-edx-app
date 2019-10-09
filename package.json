@@ -65,13 +65,11 @@
     "commander": "^2.19.0",
     "extract-zip": "^1.6.7",
     "fs-extra": "^5.0.0",
-    "glob-move": "^1.0.1",
     "globby": "^8.0.1",
     "inquirer": "^5.2.0",
     "is-json": "^2.0.1",
     "is-online": "^7.0.0",
     "js-yaml": "^3.12.1",
-    "rimraf": "^3.0.0",
     "untildify": "^3.0.3",
     "validate-npm-package-name": "^3.0.0"
   },
