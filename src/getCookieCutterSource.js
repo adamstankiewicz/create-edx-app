@@ -3,10 +3,9 @@
 import extractZip from 'extract-zip';
 import chalk from 'chalk';
 import axios from 'axios';
+import fs from 'fs';
 import fse from 'fs-extra';
 import path from 'path';
-import move from 'glob-move';
-import rimraf from 'rimraf';
 
 import { SOURCE_BASE_URL, SOURCE_BASE_FOLDER } from './constants';
 
@@ -51,21 +50,26 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
     source: destinationSourceFilename,
     destination,
   });
-
+  
   /*
     Code is cloned inside "frontend-cookiecutter-application-master".
     This extracts the content files to an upper level so the code
     will be created in the folder you indicated
   */
-  await move(`${destination}/frontend-cookiecutter-application-master/*`, destination, { dot: true })
-    .then(() => 'Content of node_modules moved successfully!')
-    .catch((error) => {
-      console.error(error);
-    });
+  moveDirFilesSync(`${destination}/frontend-cookiecutter-application-master`, destination);
 
-  // Removes the temporary folder
-  rimraf.sync(`${destination}/frontend-cookiecutter-application-master`);
+  // Removes the temporary folder and zip-file
+  fse.removeSync(`${destination}/frontend-cookiecutter-application-master`);
+  fse.removeSync(`${destination}/master.zip`);
 };
+
+async function moveDirFilesSync(sourceDir, destination) {
+  const files = fs.readdirSync(sourceDir);
+
+  files.forEach(function (file) {
+    fse.moveSync(`${sourceDir}/${file}`, `${destination}/${file}`);
+  });
+}
 
 export {
   getCookieCutterSource,
