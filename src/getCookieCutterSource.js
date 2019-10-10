@@ -29,6 +29,14 @@ const extractSource = ({ source, destination }) =>
     });
   });
 
+function moveDirFilesSync(sourceDir, destination) {
+  const files = fs.readdirSync(sourceDir);
+
+  files.forEach((file) => {
+    fse.moveSync(`${sourceDir}/${file}`, `${destination}/${file}`);
+  });
+}
+
 const getCookieCutterSource = async ({ branchName, destination }) => {
   const source = getSource(branchName);
 
@@ -50,7 +58,7 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
     source: destinationSourceFilename,
     destination,
   });
-  
+
   /*
     Code is cloned inside "frontend-cookiecutter-application-master".
     This extracts the content files to an upper level so the code
@@ -62,14 +70,6 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
   fse.removeSync(`${destination}/frontend-cookiecutter-application-master`);
   fse.removeSync(`${destination}/master.zip`);
 };
-
-function moveDirFilesSync(sourceDir, destination) {
-  const files = fs.readdirSync(sourceDir);
-
-  files.forEach(function (file) {
-    fse.moveSync(`${sourceDir}/${file}`, `${destination}/${file}`);
-  });
-}
 
 export {
   getCookieCutterSource,
