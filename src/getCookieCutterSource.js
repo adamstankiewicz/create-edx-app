@@ -63,7 +63,7 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
   fse.removeSync(`${destination}/master.zip`);
 };
 
-async function moveDirFilesSync(sourceDir, destination) {
+function moveDirFilesSync(sourceDir, destination) {
   const files = fs.readdirSync(sourceDir);
 
   files.forEach(function (file) {
