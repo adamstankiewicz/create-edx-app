@@ -64,10 +64,10 @@ const getCookieCutterSource = async ({ branchName, destination }) => {
     This extracts the content files to an upper level so the code
     will be created in the folder you indicated
   */
-  moveDirFilesSync(`${destination}/frontend-cookiecutter-application-master`, destination);
+  moveDirFilesSync(`${destination}/frontend-template-application-master`, destination);
 
   // Removes the temporary folder and zip-file
-  fse.removeSync(`${destination}/frontend-cookiecutter-application-master`);
+  fse.removeSync(`${destination}/frontend-template-application-master`);
   fse.removeSync(`${destination}/master.zip`);
 };
 
