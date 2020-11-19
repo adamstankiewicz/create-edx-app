@@ -6,8 +6,8 @@ New frontend apps can be created by copying the [frontend-template-application](
 
 
 <p align="center">
- <a href="https://travis-ci.org/edx/frontend-create-react-app">
-  <img src="https://travis-ci.org/edx/frontend-create-react-app.svg?branch=master" alt="build-status"></img>
+ <a href="https://travis-ci.com/edx/frontend-create-react-app">
+  <img src="https://travis-ci.com/edx/frontend-create-react-app.svg?branch=master" alt="build-status"></img>
  </a>
  <a href="https://www.npmjs.com/package/@edx/frontend-create-react-app">
   <img src="https://img.shields.io/npm/v/@edx/frontend-create-react-app.svg" alt="npm-version"></img>
